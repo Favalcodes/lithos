@@ -1,0 +1,475 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+:root {
+    --main-color: #D4AF37;
+    --fonts-pop: 'Poppins', sans-serif;
+    --fonts-rob: 'Roboto', sans-serif;
+    --fonts-source: 'Source Sans Pro', sans-serif;
+    --black-color: #1E1F21;
+    --sec-color2: #52575C;
+    --sec-color3: #828282;
+}
+
+.navbar {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease-in-out;
+    z-index: 999;
+}
+
+.nav-link {
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-link:hover {
+    color: #d4af37;
+}
+
+
+/*  Cart Modal  */
+
+#cartModal {
+    position: fixed;
+    top: 0;
+    left: 78% !important;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#cartModal .close {
+    color: #eb5757;
+}
+
+#cartModal .heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    margin-left: 30%;
+}
+
+#cartModal p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 33px;
+    color: #000;
+}
+
+#cartModal a {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+    color: #fff
+}
+
+#cartModal .total {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    align-content: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding: 1rem;
+    background: #e8e8e8;
+}
+
+#cartModal .sub-total {
+    font-size: 20px;
+}
+
+#cartModal .amount {
+    font-size: 20px;
+}
+
+#cartModal .modal-content {
+    padding: none !important;
+}
+
+#cartModal .modal-body {
+    background: #fff;
+    padding: 0 !important;
+}
+
+@media all and (max-width: 685px) {
+    #cartModal .modal-body {
+        width: 100%;
+    }
+}
+
+#cartModal .modal-buttons {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+}
+
+#cartModal .modal-buttons .cart-shopping {
+    background: #52575c;
+    padding: 1em;
+    flex: 1 1 50%;
+    transition: all .2s;
+    color: #fff !important;
+}
+
+#cartModal .modal-buttons .cart-shopping a {
+    color: #fff;
+}
+
+#cartModal .modal-buttons .checkout-shopping {
+    background: #1e1f21;
+    padding: 1em;
+    flex: 1 1 50%;
+    color: #fff !important;
+}
+
+#cartModal .modal-buttons .checkout-shopping a {
+    color: #fff;
+}
+
+
+/* Login/Sinup Modal  */
+
+#login-modal p {
+    font-size: 16px;
+    color: #52575c;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+#login-modal .form-control {
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    color: #cacccf !important;
+}
+
+#login-modal .form-check-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#login-modal .text-muted a {
+    position: relative;
+    left: 120%;
+    color: #a0a4a8;
+}
+
+#login-modal .btn-primary {
+    background: #d4af37 !important;
+    border: #d4af37;
+    color: #fff !important;
+}
+
+#login-modal .btn-primary a {
+    color: #fff !important;
+}
+
+#login-modal .btn-link {
+    color: #1e1f21 !important;
+}
+
+
+/* title part */
+
+.title {
+    height: 50vh;
+}
+.title {
+    background: url(/assets/images/kelly-sikkema-ZjWJdVTGYJA-unsplash\ 1.jpg);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.lead-txt {
+    font-family: var(--fonts-pop);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 46px;
+    line-height: 44px;
+    letter-spacing: 0.01em;
+    color: var(--black-color);
+    text-transform: uppercase;
+}
+
+.lead-txt::before {
+    content: '';
+    background: var(--main-color);
+    height: 1.5px;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    transform: translateY(60px);
+}
+
+.sub-txt {
+    font-family: var(--fonts-source);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--black-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+.sub-txt:hover {
+    color: var(--black-color);
+    text-decoration: none;
+}
+
+
+/* title ends  */
+
+
+/* accordion */
+
+.accordion {
+    background-color: #ffffff;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+
+/* 
+.active,
+.accordion:hover {
+    background-color: #ccc;
+} */
+
+.accordion:after {
+    content: '\002B';
+    color: #000000;
+    float: right;
+    margin-left: 5px;
+}
+
+.details .active:after {
+    content: "\2212";
+}
+
+.panel {
+    display: none;
+    background-color: white;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.panel-txt {
+    /* padding: 0 18px; */
+    padding: 1rem;
+    background: #EFEFEF;
+}
+
+.details-head {
+    font-family: var(--fonts-pop);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 23px;
+    line-height: 25px;
+}
+
+.details-head.active {
+    color: var(--main-color);
+}
+
+.details-sub {
+    font-family: var(--fonts-source);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: var(--black-color);
+}
+
+button:focus {
+    outline: none;
+}
+
+.accordion {
+    border: 1px solid #52575C;
+    border-radius: 5px;
+}
+
+
+/* accordion ends */
+
+
+/* newsletter */
+
+.contact-txt {
+    color: #828282;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.subscribe {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #BDBDBD;
+    outline: none;
+    box-shadow: none;
+    color: #BDBDBD;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+    letter-spacing: 0.03em;
+    padding: 1rem 0;
+}
+
+.subscribe:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.grey-txt {
+    color: #828282;
+}
+
+.form-txt {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+.contact-txt {
+    color: #828282;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.subscribe {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #BDBDBD;
+    outline: none;
+    box-shadow: none;
+    color: #BDBDBD;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px !important;
+    line-height: 42px;
+    letter-spacing: 0.03em;
+    padding: 1rem 0;
+}
+
+.subscribe:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.grey-txt {
+    color: #828282;
+}
+
+.form-txt {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+
+/* footer */
+
+.dark-area {
+    background: #363636;
+    color: #F2F2F2;
+}
+
+footer a {
+    color: #F2F2F2;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: #D4AF37;
+}
+
+.foot-txt {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+
+
+/* newsletter ends */
+
+@media only screen and (max-width: 620px) {
+    .details-head {
+        font-size: 18px;
+        line-height: 20px;
+    }
+    .details-sub {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    /* newsletter */
+    .contact-txt {
+        font-size: 16px;
+        line-height: 18px;
+        text-align: center;
+    }
+    .subscribe {
+        font-size: 16px !important;
+        line-height: 18px !important;
+    }
+    .form-txt {
+        font-size: 16px !important;
+        line-height: 20px !important;
+    }
+    #cartModal {
+        margin-left: auto;
+        margin-right: auto;
+        top: 2vh;
+        left: 0 !important;
+    }
+    #cartModal .modal-buttons .cart-shopping,
+    #cartModal .modal-buttons .checkout-shopping {
+        flex: 1 1 10%;
+    }
+    #login-modal .text-muted a {
+        left: 0px;
+    }
+    /* newsletter */
+}
+
+
+/* Newsletter */
+
+.newsletter {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+@media only screen and (max-width: 320px) {
+    .contact-txt {
+        font-size: 12px;
+    }
+}

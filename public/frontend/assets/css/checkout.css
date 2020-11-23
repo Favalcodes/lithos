@@ -1,0 +1,473 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+p,
+a {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+a {
+    font-size: 16px;
+}
+
+.navbar-toggler-icon .ion-icon {
+    font-size: 16px;
+}
+
+.navbar {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease-in-out;
+    z-index: 999;
+}
+
+.nav-link {
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-link:hover {
+    color: #d4af37;
+}
+
+
+/*  Cart Modal  */
+
+#cartModal {
+    position: fixed;
+    top: 0;
+    left: 78% !important;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#cartModal .close {
+    color: #eb5757;
+}
+
+#cartModal .heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    margin-left: 30%;
+}
+
+#cartModal p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 33px;
+    color: #000;
+}
+
+#cartModal a {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+    color: #fff
+}
+
+#cartModal .total {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    align-content: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding: 1rem;
+    background: #e8e8e8;
+}
+
+#cartModal .sub-total {
+    font-size: 20px;
+}
+
+#cartModal .amount {
+    font-size: 20px;
+}
+
+#cartModal .modal-content {
+    padding: none !important;
+}
+
+#cartModal .modal-body {
+    background: #fff;
+    padding: 0 !important;
+}
+
+@media all and (max-width: 685px) {
+    #cartModal .modal-body {
+        width: 100%;
+    }
+}
+
+#cartModal .modal-buttons {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+}
+
+#cartModal .modal-buttons .cart-shopping {
+    background: #52575c;
+    padding: 1em;
+    flex: 1 1 50%;
+    transition: all .2s;
+    color: #fff !important;
+}
+
+#cartModal .modal-buttons .cart-shopping a {
+    color: #fff;
+}
+
+#cartModal .modal-buttons .checkout-shopping {
+    background: #1e1f21;
+    padding: 1em;
+    flex: 1 1 50%;
+    color: #fff !important;
+}
+
+#cartModal .modal-buttons .checkout-shopping a {
+    color: #fff;
+}
+
+
+/* Login/Sinup Modal  */
+
+#login-modal p {
+    font-size: 16px;
+    color: #52575c;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+#login-modal .form-control {
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    color: #cacccf !important;
+}
+
+#login-modal .form-check-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#login-modal .text-muted a {
+    position: relative;
+    left: 120%;
+    color: #a0a4a8;
+}
+
+#login-modal .btn-primary {
+    background: #d4af37 !important;
+    border: #d4af37;
+    color: #fff !important;
+}
+
+#login-modal .btn-primary a {
+    color: #fff !important;
+}
+
+#login-modal .btn-link {
+    color: #1e1f21 !important;
+}
+
+
+/* Checkout */
+
+.jumbotron {
+    background: url(/assets/images/kelly-sikkema-ZjWJdVTGYJA-unsplash\ 1.jpg);
+}
+
+.checkout-home .display {
+    font-size: 46px;
+    color: #1e1f21;
+    padding-bottom: 3%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.checkout-home .lead {
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.checkout-home .lead a {
+    color: #1e1f21;
+}
+
+.shoppingbg {
+    border-top: .5rem solid #D4AF37;
+    background: #E8E8E8;
+    padding: 1rem;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.shopping-txt a {
+    color: #d4af37;
+}
+
+
+/* Checkout-form */
+
+.checkout-form .container {
+    border: 1px solid #a0a4a8;
+}
+
+.checkout-text {
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
+
+/* Order Summary */
+
+
+/*-- Cart Table --*/
+
+.main-content {
+    border: 1px solid #a0a4a8;
+}
+
+table {
+    width: 100%;
+}
+
+
+/* 
+.shop_table.cart .product-thumbnail,
+.shop_table.cart .product-name {
+  padding-left: 0;
+} */
+
+.shop_table.cart .product-thumbnail {
+    width: 100px;
+}
+
+.price {
+    float: right;
+}
+
+.shop_table td {
+    /* border-top: 1px solid #ddd; */
+    padding: 40px 0;
+}
+
+.shop_table a {
+    color: #000000;
+}
+
+.shop_table.cart .product-name a {
+    color: #222222;
+}
+
+
+/* .shop_table.cart .qty {
+  width: 60px;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+} */
+
+.form-checkout.order .button {
+    font-size: 14px;
+}
+
+.button.medium {
+    padding: 13px 25px;
+}
+
+.button.btn-primary {
+    background-color: #c99947 !important;
+    border: #c99947 !important;
+    box-shadow: #c99947 !important;
+}
+
+.btn-primary.focus,
+.btn-primary:focus {
+    background-color: #c99947 !important;
+    border: #c99947 !important;
+    box-shadow: #c99947 !important;
+}
+
+.button.btn-primary:hover {
+    background-color: #c99947 !important;
+    border: #c99947 !important;
+}
+
+.button.btn-primary:visited {
+    background-color: #c99947 !important;
+    border: #c99947 !important;
+}
+
+.button.btn-primary:active {
+    background-color: #c99947 !important;
+    border: #c99947 !important;
+}
+
+.button,
+input[type="submit"] {
+    color: #fff;
+    display: inline-block;
+    padding: 9px 25px;
+    text-align: center;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    background: transparent;
+    position: relative;
+    background-color: #111111;
+    font-size: 12px;
+    border: none;
+}
+
+.form-check a {
+    color: #d4af37;
+}
+
+.form-checkout {
+    font-family: 'Roboto', sans-serif;
+}
+
+.payment_methods .payment_method label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    margin-bottom: 0;
+    display: inline-block;
+}
+
+.payment_methods .payment_method input[type=checkbox],
+.payment_methods .payment_method input[type=radio] {
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 2px;
+}
+
+.payment_methods .payment_box {
+    padding-top: 10px;
+    padding-left: 22px;
+}
+
+
+/* Newsletter */
+
+.newsletter {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.contact-txt {
+    color: #828282;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.subscribe {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #BDBDBD;
+    outline: none;
+    box-shadow: none;
+    color: #BDBDBD;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px !important;
+    line-height: 42px;
+    letter-spacing: 0.03em;
+    padding: 1rem 0;
+}
+
+.subscribe:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.grey-txt {
+    color: #828282;
+}
+
+.form-txt {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+
+/* footer */
+
+.dark-area {
+    background: #363636;
+    color: #F2F2F2;
+}
+
+footer a {
+    color: #F2F2F2;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: #D4AF37;
+}
+
+.foot-txt {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+@media only screen and (max-width: 620px) {
+    .cart-btn {
+        padding: 4px 15px;
+        font-size: 11px;
+        line-height: 15px;
+    }
+    .contact-txt {
+        font-size: 16px;
+        line-height: 18px;
+        text-align: center;
+    }
+    .subscribe {
+        font-size: 16px !important;
+        line-height: 18px;
+    }
+    .form-txt {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .checkout-form .container,
+    .main-content {
+        border: none;
+    }
+    #cartModal {
+        margin-left: auto;
+        margin-right: auto;
+        top: 2vh;
+        left: 0 !important;
+    }
+    #cartModal .modal-buttons .cart-shopping,
+    #cartModal .modal-buttons .checkout-shopping {
+        flex: 1 1 10%;
+    }
+    #login-modal .text-muted a {
+        left: 0px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .contact-txt {
+        font-size: 12px;
+    }
+}

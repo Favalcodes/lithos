@@ -1,0 +1,453 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+p,
+a {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+a {
+    font-size: 16px;
+}
+
+.navbar-toggler-icon .ion-icon {
+    font-size: 16px;
+}
+
+.navbar {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease-in-out;
+    z-index: 999;
+}
+
+.nav-link {
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-link:hover {
+    color: #d4af37;
+}
+
+
+/*  Cart Modal  */
+
+#cartModal {
+    position: fixed;
+    top: 0;
+    left: 78% !important;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#cartModal .close {
+    color: #eb5757;
+}
+
+#cartModal .heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    margin-left: 30%;
+}
+
+#cartModal p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 33px;
+    color: #000;
+}
+
+#cartModal a {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+    color: #fff
+}
+
+#cartModal .total {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    align-content: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding: 1rem;
+    background: #e8e8e8;
+}
+
+#cartModal .sub-total {
+    font-size: 20px;
+}
+
+#cartModal .amount {
+    font-size: 20px;
+}
+
+#cartModal .modal-content {
+    padding: none !important;
+}
+
+#cartModal .modal-body {
+    background: #fff;
+    padding: 0 !important;
+}
+
+@media all and (max-width: 685px) {
+    #cartModal .modal-body {
+        width: 100%;
+    }
+}
+
+#cartModal .modal-buttons {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+}
+
+#cartModal .modal-buttons .cart-shopping {
+    background: #52575c;
+    padding: 1em;
+    flex: 1 1 50%;
+    transition: all .2s;
+    color: #fff !important;
+}
+
+#cartModal .modal-buttons .cart-shopping a {
+    color: #fff;
+}
+
+#cartModal .modal-buttons .checkout-shopping {
+    background: #1e1f21;
+    padding: 1em;
+    flex: 1 1 50%;
+    color: #fff !important;
+}
+
+#cartModal .modal-buttons .checkout-shopping a {
+    color: #fff;
+}
+
+
+/* Login/Sinup Modal  */
+
+#login-modal p {
+    font-size: 16px;
+    color: #52575c;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+#login-modal .form-control {
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    color: #cacccf !important;
+}
+
+#login-modal .form-check-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#login-modal .text-muted a {
+    position: relative;
+    left: 120%;
+    color: #a0a4a8;
+}
+
+#login-modal .btn-primary {
+    background: #d4af37 !important;
+    border: #d4af37;
+    color: #fff !important;
+}
+
+#login-modal .btn-primary a {
+    color: #fff !important;
+}
+
+#login-modal .btn-link {
+    color: #1e1f21 !important;
+}
+
+
+/* Product */
+
+.jumbotron {
+    background: url(/assets/images/kelly-sikkema-ZjWJdVTGYJA-unsplash\ 1.jpg);
+}
+
+.product-home .display {
+    font-size: 46px;
+    color: #1e1f21;
+    padding-bottom: 3%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.product-home .lead {
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.product-home .lead a {
+    color: #1e1f21;
+}
+
+.buttons {
+    margin-top: 5%;
+}
+
+.buttons .row {
+    justify-content: space-between;
+}
+
+hr {
+    border: 1px solid #cacccf;
+}
+
+.product-rating .btn-success {
+    background: #c4c4c4 !important;
+    border-color: #c4c4c4 !important;
+}
+
+.filter .btn-success {
+    background: #d4af37 !important;
+    border-color: #d4af37 !important;
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.product-rating .btn-success:hover {
+    border-color: #c4c4c4 !important;
+}
+
+.product-rating .btn-success:active {
+    border-color: #c4c4c4 !important;
+}
+
+.filter .btn-success:hover {
+    border-color: #d4af37 !important;
+}
+
+.filter .btn-success:active {
+    border-color: #d4af37 !important;
+}
+
+.dropdown-menu a {
+    color: #d4af37;
+}
+
+.rating {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.products .card {
+    border: none;
+}
+
+
+/*hides the radio buttons*/
+
+.rating>input {
+    display: none;
+}
+
+
+/*style the empty stars, sets position:relative as base for pseudo-elements*/
+
+.rating>label {
+    position: relative;
+    width: 20px;
+    color: #FFD700;
+    cursor: pointer;
+}
+
+
+/* sets filled star pseudo-elements */
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0;
+}
+
+
+/*overlays a filled start character to the hovered element and all previous siblings*/
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important;
+}
+
+
+/*overlays a filled start character on the selected element and all previous siblings*/
+
+.rating>input:checked~label:before {
+    opacity: 1;
+}
+
+
+/*when an element is selected and pointer re-enters the rating container, selected rate and siblings get semi transparent, as reminder of current selection*/
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4;
+}
+
+.card a {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+    color: #1e1f21 !important;
+    line-height: 28px;
+    text-decoration: none;
+}
+
+.price {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+    color: #d4af37;
+    text-align: center;
+}
+
+@media only screen and (max-width: 584px) {
+    .buttons .row {
+        flex-direction: column;
+    }
+    .filter {
+        padding-bottom: 3%;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter {
+        flex-direction: column;
+        padding-left: 5%;
+    }
+    .product-rating {
+        align-self: flex-start;
+        padding-left: 5%;
+    }
+}
+
+
+/* Newsletter */
+
+.newsletter {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.contact-txt {
+    color: #828282;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.subscribe {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #BDBDBD;
+    outline: none;
+    box-shadow: none;
+    color: #BDBDBD;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px !important;
+    line-height: 42px;
+    letter-spacing: 0.03em;
+    padding: 1rem 0;
+}
+
+.subscribe:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.grey-txt {
+    color: #828282;
+}
+
+.form-txt {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+
+/* footer */
+
+.dark-area {
+    background: #363636;
+    color: #F2F2F2;
+}
+
+footer a {
+    color: #F2F2F2;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: #D4AF37;
+}
+
+.foot-txt {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+@media only screen and (max-width: 620px) {
+    .cart-btn {
+        padding: 4px 15px;
+        font-size: 11px;
+        line-height: 15px;
+    }
+    .contact-txt {
+        font-size: 16px;
+        line-height: 18px;
+        text-align: center;
+    }
+    .subscribe {
+        font-size: 16px !important;
+        line-height: 18px;
+    }
+    .form-txt {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    #cartModal {
+        margin-left: auto;
+        margin-right: auto;
+        top: 2vh;
+        left: 0 !important;
+    }
+    #cartModal .modal-buttons .cart-shopping,
+    #cartModal .modal-buttons .checkout-shopping {
+        flex: 1 1 10%;
+    }
+    #login-modal .text-muted a {
+        left: 0px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .contact-txt {
+        font-size: 12px;
+    }
+}

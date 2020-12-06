@@ -53,9 +53,12 @@ Route::post("/login",
     );
 
 
-Route::get("/cart", function(){
-    return view("website.frontend.store.cart");
-});
+Route::get("/cart",
+    [
+        "uses"=> "App\Http\Controllers\cartController@index",
+        "as"=>"cart"
+    ]
+);
 
 Route::get("/account", function(){
     return view("website.frontend.store.account");

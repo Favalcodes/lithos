@@ -14,7 +14,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $products= $this->listUserCart();
+        return view("website.frontend.store.cart", ['products'=> $products]);
     }
 
     /**
@@ -35,7 +36,34 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $cart= new Cart();
+        $cart->user_id= Auth::user()->id;
+        $cart->product_id= $request['product_id'];
+        $cart->checked_out= false;
+        $cart->save();
+    }
+
+
+    public function listUserCart(){
+        $user_id=Auth::user()->id;
+        $products= [];
+        $carts= Cart::where('user_id', $user_id)->get();
+        foreach($cart as $cart){
+            if ($cart->checked_out == false) {
+                $product= Product::where('id', $cart->product_id)->first();
+                array_push($products, $product);
+            }
+        }
+        if (empty($products)) {
+            return ['products'=>'you have nothing in your cart'];
+        }else{
+            return $products;
+        }
+    }
+
+
+    public function addQuantity(){
+
     }
 
     /**

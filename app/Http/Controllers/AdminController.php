@@ -41,7 +41,8 @@ class AdminController extends Controller
         $admin->password=$password;
         
         if ($admin->save()) {
-            Auth::gaurd('admin')->login($admin);
+            // Auth::gaurd('admin')->login($admin);
+            return 'saved';
             
         }
     }

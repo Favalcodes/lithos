@@ -21,7 +21,7 @@
 
 <body>
 
-    @include('website.frontend.store.includes.header')
+@include("website.frontend.layouts.header")
 
     <!-- Cart Modal -->
    

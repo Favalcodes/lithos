@@ -1,7 +1,7 @@
 <header>
         <nav class="navbar navbar-expand-lg sticky">
             <div class="container">
-                <a class="navbar-brand" href="./index.html">
+                <a class="navbar-brand" href="/">
                     <img src="./assets/images/logo.png" alt="" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#care-navbar" aria-controls="care-navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,17 +12,17 @@
                 <div class="collapse navbar-collapse" id="care-navbar">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active mx-sm-2">
-                            <a class="nav-link" href="./index.html">Home</a>
+                            <a class="nav-link" href="/">Home</a>
                         </li>
                         <li class="nav-item mx-sm-2">
                             <a class="nav-link" href="{{route('products')}}">Products <span
                                     class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item mx-sm-2">
-                            <a class="nav-link" href="{{URL::to('frontend/about.html')}}">About us</a>
+                            <a class="nav-link" href="/about">About us</a>
                         </li>
                         <li class="nav-item mx-sm-2">
-                            <a class="nav-link" href="{{URL::to('frontend/contact.html')}}">Contact us</a>
+                            <a class="nav-link" href="/contact">Contact us</a>
                         </li>
                         <li class="nav-item mx-sm-2">
                             <a class="nav-link" href="#cartModal" data-toggle="modal" data-target="#cartModal">

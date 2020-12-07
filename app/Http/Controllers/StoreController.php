@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
@@ -18,8 +20,9 @@ class StoreController extends Controller
     }
 
     public function productPage($Product_id){
+        $products= Product::all();
         $Product= Product::where('id', $Product_id)->first();
-        return view("website.frontend.store.product-info", ['product'=> $Product]);
+        return view("website.frontend.store.product-info", ['product'=> $Product,'products'=> $products]);
     }
 
     public function cartPage(){

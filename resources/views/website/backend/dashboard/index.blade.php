@@ -1,7 +1,7 @@
 @extends('website.backend.layouts.main')
 
 @section('content')
-
+{{Auth::guard('admin')->user()}}
 <!-- top tiles -->
 <div class="row" style="display: inline-block;" >
     <div class="tile_count">

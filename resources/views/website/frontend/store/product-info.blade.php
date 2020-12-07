@@ -84,28 +84,29 @@
                         <input type="radio" name="rating" value="2"><label for="2">☆</label>
                         <input type="radio" name="rating" value="1"><label for="1">☆</label>
                     </div>
+                    {{$product->description}}
                     <div class="price my-2">&#8358;{{{$product->price}}}.00</div>
                     <div class="info-txt my-2">
-                    {{$product->description}}
+                    
                     </div>
                     <div class="row mt-3 mb-5">
                         <div class="col-md-4 col">
                             <div class="form-group">
                                 <div class="input-group col mx-auto">
                                     <div class="input-group-btn counter">
-                                        <button id="down" class="btn btn-default" onclick=" down('1')"><img src="./assets/images/minus.svg" alt="-" class="img-fluid"></button>
+                                        <button id="down" class="btn btn-default" onclick=" down('1')"><img src="{{URL::to('frontend/assets/images/minus.svg')}}" alt="-" class="img-fluid"></button>
                                     </div>
                                     <input type="text" id="myNumber" class="form-control input-number text-center counter" value="1" />
                                     <div class="input-group-btn counter">
-                                        <button id="up" class="btn btn-default" onclick="up('1000')"><img src="./assets/images/plus.svg" alt="+" class="img-fluid"></button>
+                                        <button id="up" class="btn btn-default" onclick="up('1000')"><img src="{{URL::to('frontend/assets/images/plus.svg')}}" alt="+" class="img-fluid"></button>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="col-md-4 col"><button class="btn cart-btn">Add to cart</button></div>
+                        <div class="col-md-4 col"><button  class="btn cart-btn">Add to cart</button></div>
                         <div class="col-md-4 col">
-                            <button class="btn btn-wish"> <img src="./assets/images/heart.svg" alt="add to wishlist"></button>
+                            <button class="btn btn-wish"> <img src="{{URL::to('frontend/assets/images/heart.svg')}}" alt="add to wishlist"></button>
                         </div>
                     </div>
                     <hr>
@@ -113,13 +114,13 @@
                         <t class="text-muted">Noir</t>
                     </div>
                     <div class="further-details"><b class="fut-details-txt">Categories:</b>
-                        <t class="text-muted">Female Collection</t>
+                        <t class="text-muted">{{$product->category->brand_name}}</t>
                     </div>
                     <div class="further-details"><b class="fut-details-txt">Tag:</b>
                         <t class="text-muted">Edt</t>
                     </div>
-                    <div class="further-details"><b class="fut-details-txt">Share:</b> <img src="./assets/images/Vector-2.jpg" alt="share" class="img-fluid mx-1"> <img src="./assets/images/Path.jpg" alt="share" class="img-fluid mx-1"> <img src="./assets/images/Vector-1.jpg" alt="share"
-                            class="img-fluid mx-1"> <img src="./assets/images/Vector.jpg" alt="share" class="img-fluid mx-1"></div>
+                    <div class="further-details"><b class="fut-details-txt">Share:</b> <img src="{{URL::to('frontend/assets/images/Vector-2.jpg')}}" alt="share" class="img-fluid mx-1"> <img src="{{URL::to('frontend/assets/images/Path.jpg')}}" alt="share" class="img-fluid mx-1"> <img src="{{URL::to('frontend/assets/images/Vector-1.jpg')}}" alt="share"
+                            class="img-fluid mx-1"> <img src="{{URL::to('frontend/assets/images/Vector.jpg')}}" alt="share" class="img-fluid mx-1"></div>
                 </div>
             </div>
         </div>
@@ -135,35 +136,27 @@
                         <button class="tablinks tab-title" onclick="openTabs(event, 'Description')" id="defaultOpen">Description</button>
                         <button class="tablinks tab-title" onclick="openTabs(event, 'Addtional Information')">Addtional Information</button>
                         <button class="tablinks tab-title" onclick="openTabs(event, 'Reviews')">Reviews(2)</button>
-                    </div>
 
                     <div id="Description" class="tabcontent ">
                         <h3 class="details mt-3">Product Description</h3>
-                        <p class="sub-des">{{$product->product_description}}</p>
+                        <p class="sub-des">{{$product->product_desc}}</p>
                         <h4 class="mt-5 mb-2 text-center related-txt">Related Products</h4>
                         <div class="row">
+                            @foreach($products as $pro)
+                                @if($pro->category->id == $product->category->id)
                             <div class="col-md-2">
                                 <img src="./assets/images/violette.jpeg" alt="related products" class="img-fluid">
                                 <div class="row">
                                     <div class="col-md-6 col">
-                                        <h3 class="related-title">Violette</h3>
+                                        <h3 class="related-title">{{$pro->product_name}}</h3>
                                     </div>
                                     <div class="col-md-6 col">
-                                        <h3 class="related-price">&#8358;3500</h3>
+                                        <h3 class="related-price">&#8358;{{$pro->price}}</h3>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2 col">
-                                <img src="./assets/images/nuit.jpeg" alt="related products" class="img-fluid">
-                                <div class="row">
-                                    <div class="col-md-6 col">
-                                        <h3 class="related-title">Nuit</h3>
-                                    </div>
-                                    <div class="col-md-6 col">
-                                        <h3 class="related-price">&#8358;3500</h3>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
+                            @endforeach
                         </div>
                     </div>
 
@@ -172,28 +165,21 @@
                         <p class="sub-des">This is made using oils used for aromathrapy and can invoke the sense of calm in the user.</p>
                         <h4 class="mt-5 mb-2 text-center related-txt">Related Products</h4>
                         <div class="row">
+                            @foreach($products as $pro)
+                                @if($pro->category->id == $product->category->id)
                             <div class="col-md-2">
                                 <img src="./assets/images/violette.jpeg" alt="related products" class="img-fluid">
                                 <div class="row">
                                     <div class="col-md-6 col">
-                                        <h3 class="related-title">Violette</h3>
+                                        <h3 class="related-title">{{$pro->product_name}}</h3>
                                     </div>
                                     <div class="col-md-6 col">
-                                        <h3 class="related-price">&#8358;3500</h3>
+                                        <h3 class="related-price">&#8358;{{$pro->price}}</h3>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2 col">
-                                <img src="./assets/images/nuit.jpeg" alt="related products" class="img-fluid">
-                                <div class="row">
-                                    <div class="col-md-6 col">
-                                        <h3 class="related-title">Nuit</h3>
-                                    </div>
-                                    <div class="col-md-6 col">
-                                        <h3 class="related-price">&#8358;3500</h3>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
+                            @endforeach
                         </div>
                     </div>
 

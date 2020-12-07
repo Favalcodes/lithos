@@ -43,21 +43,21 @@
 <body>
   <div class="random">
       <h1>Admin Login</h1>
-    <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" method="POST" action="">
+    <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" method="POST" action="{{route('admin.login')}}">
       @csrf
 
       <div class="item form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Email Address<span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
-        <input type="text" id="total" name="total" required="required" class="form-control ">
+        <input type="text" id="email" name="email" required="required" class="form-control ">
         </div>
       </div>
       <div class="item form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Password<span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
-          <input type="password" id="total" name="total" required="required" class="form-control ">
+          <input type="password" id="password" name="password" required="required" class="form-control ">
         </div>
       </div>
     

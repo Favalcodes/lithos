@@ -64,6 +64,13 @@ Route::get("/account", function(){
     return view("website.frontend.store.account");
 });
 
+Route::get("/contact", function(){
+    return view("website.frontend.layouts.contact");
+});
+
+Route::get("/about", function(){
+    return view("website.frontend.layouts.about");
+});
 Route::get("/test/products","App\Http\Controllers\StoreController@productsPage" );
 
 Auth::routes();
@@ -78,8 +85,9 @@ Route::get('/admin/register', [App\Http\Controllers\AdminController::class, 'reg
 Route::get('/admin/login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin.login');
 Route::post('/admin/register', [App\Http\Controllers\AdminController::class, 'postRegister'])->name('admin.register');
 Route::post('/admin/login', [App\Http\Controllers\AdminController::class, 'postLogin'])->name('admin.login');
+Route::get('/admin/logout', [App\Http\Controllers\AdminController::class, 'logOut'])->name('admin.logout');
 //dashboard
-Route::get('/dashboard', [App\Http\Controllers\BackendController::class, 'index'])->name('backend.index');
+Route::get('/dashboard', [App\Http\Controllers\BackendController::class, 'index'])->name('backend.index')->middleware('auth:admin');
 
 Route::resource('/dashboard/category', 'App\Http\Controllers\ProductCategoryController');
 Route::resource('/dashboard/product', 'App\Http\Controllers\ProductController');

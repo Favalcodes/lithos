@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -53,10 +54,15 @@ class AdminController extends Controller
             'password'=>'required'
         ]);
 
-        if(Auth::gaurd('admin')->attempt(['email'=>$request['email'],'password'=>$request['password']])){
-            return redirect()->back();
-
+        if(Auth::guard('admin')->attempt(['email'=>$request['email'],'password'=>$request['password']])){
+            return redirect()->route('backend.index');
+            // return Auth::guard('admin')->user();
         }
+      }
+
+      public function logOut(){
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
       }
   
 

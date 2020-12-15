@@ -87,9 +87,12 @@
                         <img src="./assets/images/user2.svg" />
                         <p>Sign in to make the most out of your shopping experience.</p>
                         <div id="div-forms">
+                            
                             <form action="{{route('login')}}" id="login-form" enctype="multipart/form-data" method="POST">
+                                @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="username" placeholder="Username">
+
+                                    <input type="text" class="form-control form-control-lg" name="email" placeholder="Username">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" name="password" placeholder="Password">
@@ -109,8 +112,9 @@
                                 </div>
                             </form>
                             <form action="{{route('register')}}" id="sign-form" enctype="multipart/form-data" method="POST" style="display: none;">
+                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="username" placeholder="Username">
+                                    <input type="text" class="form-control form-control-lg" name="name" placeholder="Username">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" name="email" placeholder="Email Address">

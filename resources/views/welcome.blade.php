@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Laravel</title>
 
@@ -21,16 +22,17 @@
         </style>
     </head>
     <body class="antialiased">
-        <script src="https://www.paypal.com/sdk/js?client-id=AZ2w7qXZQkHS1RvZYXU0saoLD8EqVfTTbqqnWg95-RkLoA-Ddxw3hTSq8Q4oG8McBxQXqVeMPwlroVfM"></script>
+        <!-- <script src="https://www.paypal.com/sdk/js?client-id=AZ2w7qXZQkHS1RvZYXU0saoLD8EqVfTTbqqnWg95-RkLoA-Ddxw3hTSq8Q4oG8McBxQXqVeMPwlroVfM"></script> -->
         <!-- <script>paypal.Buttons().render('body');</script> -->
 
-        <script>
+        <!-- <script>
   paypal.Buttons({
     createOrder: function() {
         return fetch('/order', {
             method: 'post',
             headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            
             }
         }).then(function(res) {
             return res.json();
@@ -39,7 +41,7 @@
         });
     },
     onApprove: function(data) {
-        return fetch('/my-server/capture-paypal-transaction', {
+        return fetch('/payment', {
             headers: {
             'content-type': 'application/json'
             },
@@ -53,7 +55,52 @@
         })
     }
   }).render('body');
-  //This function displays Smart Payment Buttons on your web page.
+  //This function displays Smart Payment Buttons on your web page. -->
+<!-- </script> -->
+<form id="paymentForm">
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input type="email" id="email-address" required />
+  </div>
+  <div class="form-group">
+    <label for="amount">Amount</label>
+    <input type="tel" id="amount" required />
+  </div>
+  <div class="form-group">
+    <label for="first-name">First Name</label>
+    <input type="text" id="first-name" />
+  </div>
+  <div class="form-group">
+    <label for="last-name">Last Name</label>
+    <input type="text" id="last-name" />
+  </div>
+  <div class="form-submit">
+    <button type="submit" onclick="payWithPaystack()"> Pay </button>
+  </div>
+</form>
+<script src="https://js.paystack.co/v1/inline.js"></script> 
+<script>
+    var paymentForm = document.getElementById('paymentForm');
+paymentForm.addEventListener('submit', payWithPaystack, false);
+function payWithPaystack() {
+  var handler = PaystackPop.setup({
+    key: 'YOUR_PUBLIC_KEY', // Replace with your public key
+    email: document.getElementById('email-address').value,
+    amount: document.getElementById('amount').value * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
+    currency: 'NGN', // Use GHS for Ghana Cedis or USD for US Dollars
+    ref: 'YOUR_REFERENCE', // Replace with a reference you generated
+    callback: function(response) {
+      //this happens after the payment is completed successfully
+      var reference = response.reference;
+      alert('Payment complete! Reference: ' + reference);
+      // Make an AJAX call to your server with the reference to verify the transaction
+    },
+    onClose: function() {
+      alert('Transaction was not completed, window closed.');
+    },
+  });
+  handler.openIframe();
+}
 </script>
 
     </body>

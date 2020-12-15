@@ -38,14 +38,14 @@ Route::get("/product/{product_id}", [
     "as"=>"product"
     ]);
     
-    Route::post("/register", 
+    Route::post("/user/register", 
     [
         "uses"=> "App\Http\Controllers\StoreController@userRegister",
         "as"=>"register"
     ]
 );
 
-Route::post("/login", 
+Route::post("/user/login", 
         [
             "uses"=> "App\Http\Controllers\StoreController@userAuth",
             "as"=>"login"
@@ -102,11 +102,9 @@ Route::get("/home", function(){
     return view("welcome");
 });
 
-Route::post("/order", );
+Route::post("/order",'App\Http\Controllers\StoreController@makePaypalPayment' );
 
-Route::post("/payment", function(){
-    return "payment working";
-});
+Route::post("/payment","App\Http\Controllers\StoreController@contPaypalPayment");
 
 
 

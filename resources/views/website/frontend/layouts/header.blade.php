@@ -29,11 +29,19 @@
                                 <ion-icon name="cart-outline" style="font-size: 32px;"></ion-icon>
                             </a>
                         </li>
+                        @if(!Auth::user())
                         <li class="nav-item mx-sm-2">
                             <a class="nav-link" href="#login-modal" data-toggle="modal" data-target="#login-modal">
                                 <ion-icon name="person-circle-outline" style="font-size: 32px;"></ion-icon>
                             </a>
                         </li>
+                        @else
+                        <li class="nav-item mx-sm-2">
+                            <a class="nav-link" href="/account" >
+                                <ion-icon name="person-circle-outline" style="font-size: 32px;"></ion-icon>
+                            </a>
+                        </li>
+                        @endif
                         <li class="nav-item mx-sm-2">
                             <a class="nav-link" href="#">
                                 <ion-icon name="search-outline" style="font-size: 32px;"></ion-icon>

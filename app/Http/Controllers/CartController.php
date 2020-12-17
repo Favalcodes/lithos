@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,8 +16,13 @@ class CartController extends Controller
      */
     public function index()
     {
-        // $products= $this->listUserCart();
-        return view("website.frontend.store.cart");
+        if (Auth::user()) {
+            # code...
+            $products= $this->listUserCart();
+            return view("website.frontend.store.cart", ['products'=> $products]);
+        }
+        
+        // return redirect()->route()->back();
     }
 
     /**
@@ -37,11 +43,14 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $cart= new Cart();
         $cart->user_id= Auth::user()->id;
         $cart->product_id= $request['product_id'];
+        $cart->quantity= $request['myNumber'];
         $cart->checked_out= false;
         $cart->save();
+        return redirect()->route()->back();
     }
 
 
@@ -49,22 +58,24 @@ class CartController extends Controller
         $user_id=Auth::user()->id;
         $products= [];
         $carts= Cart::where('user_id', $user_id)->get();
-        foreach($cart as $cart){
+        foreach($carts as $cart){
             if ($cart->checked_out == false) {
                 $product= Product::where('id', $cart->product_id)->first();
                 array_push($products, $product);
+                
             }
         }
-        if (empty($products)) {
-            return ['products'=>'you have nothing in your cart'];
-        }else{
-            return $products;
-        }
+
+        return $products;
+        
     }
 
 
-    public function addQuantity(){
-
+    public function addQuantity(Request $request, $cart_id){
+        $cart= Cart::where("id", $cart_id)->first();
+        $cart->quantity= $request['myNumber'];
+        $cart->update();
+        return redirect()->back();
     }
 
     /**

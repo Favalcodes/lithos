@@ -2,21 +2,26 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="{{URL::to('frontend/assets/images/logo.png')}}" type="image/x-icon">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon">
+    <title>Lithos Collections</title>
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+    <!--Custom CSS-->
     <link rel="stylesheet" href="{{URL::to('frontend/assets/css/product-info.css')}}">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
     <script src="https://kit.fontawesome.com/6ebc2d8f5f.js" crossorigin="anonymous"></script>
     <!--Ionicons-->
     <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
 
-    <title>single product page-additional info </title>
+
 </head>
 
 <body>
@@ -91,23 +96,27 @@
                     </div>
                     <div class="row mt-3 mb-5">
                         <div class="col-md-4 col">
+                            <form method="post" action="{{route('add')}}">
+                            @csrf
                             <div class="form-group">
                                 <div class="input-group col mx-auto">
                                     <div class="input-group-btn counter">
-                                        <button id="down" class="btn btn-default" onclick=" down('1')"><img src="{{URL::to('frontend/assets/images/minus.svg')}}" alt="-" class="img-fluid"></button>
+                                        <button type="button" id="down" class="btn btn-default" onclick.prevent=" down('1')"><img src="{{URL::to('frontend/assets/images/minus.svg')}}" alt="-" class="img-fluid"></button>
                                     </div>
-                                    <input type="text" id="myNumber" class="form-control input-number text-center counter" value="1" />
+                                    <input type="text" id="myNumber" name="myNumber" class="form-control input-number text-center counter" value="1" />
+                                    <input type="hidden" id="product_id" name="product_id"  value="{{$product->id}}" />
                                     <div class="input-group-btn counter">
-                                        <button id="up" class="btn btn-default" onclick="up('1000')"><img src="{{URL::to('frontend/assets/images/plus.svg')}}" alt="+" class="img-fluid"></button>
+                                        <button id="up" class="btn btn-default" onclick.prevent="up('1000')"><img src="{{URL::to('frontend/assets/images/plus.svg')}}" alt="+" class="img-fluid"></button>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="col-md-4 col"><button  class="btn cart-btn">Add to cart</button></div>
+                        <div class="col-md-4 col"><button type="submit" class="btn cart-btn">Add to cart</button></div>
                         <div class="col-md-4 col">
                             <button class="btn btn-wish"> <img src="{{URL::to('frontend/assets/images/heart.svg')}}" alt="add to wishlist"></button>
                         </div>
+                        </form>
                     </div>
                     <hr>
                     <div class="further-details"><b class="fut-details-txt">SKU:</b>

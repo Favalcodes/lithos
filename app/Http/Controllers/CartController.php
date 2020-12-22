@@ -59,7 +59,7 @@ class CartController extends Controller
         $cart->quantity= $request['myNumber'];
         $cart->checked_out= false;
         $cart->save();
-        return redirect()->route()->back();
+        return redirect()->back();
     }
 
 

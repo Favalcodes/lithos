@@ -12,15 +12,15 @@ use Illuminate\Http\Request;
 use App\Models\Transaction;
 class TransactionsController extends Controller
 {
-    public function createPayStackpayment(){
+    public function createPayStackpayment( $data){
         
         $fields = [
-          'email' => 'customer@email.com',
-          'amount' => '20000'
+          'email' => $data['email'],
+          'amount' => $data['amount']*100
         ];
 
         // $fields = json_encode($fields);
-        // var_dump($fields);
+        var_dump($data);
 
         $http= new \GuzzleHttp\Client([
             'headers'=>[
@@ -80,10 +80,13 @@ class TransactionsController extends Controller
         $total=[];
         foreach($carts as $cart){
             if($cart->checked_out == false){
-                $products = Product::where('id', $cart->product_id)->get();
+                $products = Product::where('id', $cart->product_id)->get(); 
+                $cart->checked_out == true;
+                $cart->update();
                 array_push($products_id, $cart->product_id);
                 foreach($products as $product){
-                    array_push($total, $product->price);
+                    $price= $product->price * $cart->quantity;
+                    array_push($total, $price);
                 }
                 
             }
@@ -94,19 +97,34 @@ class TransactionsController extends Controller
         $transaction->status = 2;
         $transaction->amount= array_sum($total);
         $transaction->payment_method = $request['payment_method'];
-        
+        $amount= array_sum($total);
         $transaction->trans_id= uniqid('Trans', true);
-        if($request['payment_method'] == 'paystack'){
-            $payment= $this->createPayStackpayment();
-            var_dump($payment->data);
+       $data=[
+           'email'=> $request['email'],
+           'amount'=> $amount
+       ];
+            $payment= $this->createPayStackpayment($data);
+            var_dump($payment);
             $transaction->refrence = $payment->data->reference;
             $transaction->save();
             return redirect($payment->data->authorization_url);
 
+        
+        
+        
+        
+        
+    }
+
+    public function verifyTransactions($reference, $status){
+        var_dump($status);
+        $transaction= Transaction::where('refrence', $reference)->first();
+        if($status=='success'){
+            $transaction->status = 1;
         }
-        
-        
-        
-        
+      
+        $transaction->update();
+        return 'done';
+
     }
 }

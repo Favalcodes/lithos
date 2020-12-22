@@ -47,7 +47,7 @@
             <div class="checkout-text">BILLING DETAILS</div>
             <form method="post" action="/payment">
                 @csrf
-                <!-- <div class="form-row">
+                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">First Name</label>
                         <input type="text" class="form-control" id="inputfname" required>
@@ -88,7 +88,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Email address</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -100,7 +100,7 @@
                         <label for="inputPassword4">Password</label>
                         <input type="password" class="form-control" id="password" required>
                     </div>
-                </div> -->
+                </div>
             
         </div>
     </section>

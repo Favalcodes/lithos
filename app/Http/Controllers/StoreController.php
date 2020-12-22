@@ -46,10 +46,10 @@ class StoreController extends Controller
         // ]);
 // return "mad o";
         if(Auth::attempt(['email'=>$request['email'],'password'=>$request['password']])){
-            return Auth::user();
+          return redirect()->back();
 
         }
-        return "failed";
+        return redirect()->back();
     }
 
     public function userRegister(Request $request){
@@ -70,9 +70,9 @@ class StoreController extends Controller
         
         if ($user->save()) {
             Auth::login($user);
-            return Auth::user();
+            return redirect()->back();
         }
-        return "failed";
+        return redirect()->back() ;
         
 
        

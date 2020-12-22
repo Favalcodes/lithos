@@ -2,35 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\Product;
+// use App\Models\Cart;
+use App\Models\User;
+use App\Models\ProductCategory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use App\Models\Transaction;
 class TransactionsController extends Controller
 {
     public function createPayStackpayment(){
-        $url = "https://api.paystack.co/transaction/initialize";
+        
         $fields = [
-          'email' => "customer@email.com",
-          'amount' => "20000"
+          'email' => 'customer@email.com',
+          'amount' => '20000'
         ];
-        $fields_string = http_build_query($fields);
-        //open connection
-        $ch = curl_init();
-        
-        //set the url, number of POST vars, POST data
-        curl_setopt($ch,CURLOPT_URL, $url);
-        curl_setopt($ch,CURLOPT_POST, true);
-        curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-          "Authorization: Bearer SECRET_KEY",
-          "Cache-Control: no-cache",
-        ));
-        
-        //So that curl_exec returns the contents of the cURL; rather than echoing it
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
-        
-        //execute post
-        $result = curl_exec($ch);
-        echo $result;
+
+        // $fields = json_encode($fields);
+        // var_dump($fields);
+
+        $http= new \GuzzleHttp\Client([
+            'headers'=>[
+                'Content-Type'=>'application/json',
+                'Authorization'=> ' Bearer sk_test_1166bf929bae79bdffaf027205d378c2344b7b81'
+            ]
+        ]);
+
+
+        try{
+           $response= $http->request('POST','https://api.paystack.co/transaction/initialize',
+           ['verify' => false,
+           'body'=> json_encode($fields)]
+        );
+
+        $data= json_decode($response->getBody());
+    }catch(\GuzzleHttp\Exception\RequestException  $e){
+        $data= json_decode($e->getResponse()->getBody(true));
+    }
+
+       return $data;
     }
 
     public function verifyPayStackpayment($refrence){
@@ -56,13 +67,46 @@ class TransactionsController extends Controller
         curl_close($curl);
         
         if ($err) {
-            echo "cURL Error #:" . $err;
+            return "cURL Error #:" . $err;
         } else {
-            echo $response;
+            return $response;
         }
     }
 
-    public function transactions(){
-       
+    public function transactions(Request $request){
+        
+        $carts = Cart::where('user_id' , Auth::user()->id)->get();
+        $products_id=[];
+        $total=[];
+        foreach($carts as $cart){
+            if($cart->checked_out == false){
+                $products = Product::where('id', $cart->product_id)->get();
+                array_push($products_id, $cart->product_id);
+                foreach($products as $product){
+                    array_push($total, $product->price);
+                }
+                
+            }
+        }
+        $transaction= new Transaction();
+        $transaction->user_id = Auth::user()->id;
+        $transaction->product_id= implode(",", $products_id);
+        $transaction->status = 2;
+        $transaction->amount= array_sum($total);
+        $transaction->payment_method = $request['payment_method'];
+        
+        $transaction->trans_id= uniqid('Trans', true);
+        if($request['payment_method'] == 'paystack'){
+            $payment= $this->createPayStackpayment();
+            var_dump($payment->data);
+            $transaction->refrence = $payment->data->reference;
+            $transaction->save();
+            return redirect($payment->data->authorization_url);
+
+        }
+        
+        
+        
+        
     }
 }

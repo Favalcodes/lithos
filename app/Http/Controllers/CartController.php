@@ -17,10 +17,19 @@ class CartController extends Controller
     public function index()
     {
         if (Auth::user()) {
-            # code...
             $products= $this->listUserCart();
             return view("website.frontend.store.cart", ['products'=> $products]);
         }
+        
+        // return redirect()->route()->back();
+    }
+
+    public function checkout()
+    {
+        // if (Auth::user()) {
+            $products= $this->listUserCart();
+            return view("website.frontend.store.checkout", ['products'=> $products]);
+        // }
         
         // return redirect()->route()->back();
     }

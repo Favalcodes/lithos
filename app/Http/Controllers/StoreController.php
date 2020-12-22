@@ -44,7 +44,7 @@ class StoreController extends Controller
         //     'email'=>'email|required',
         //     'password'=>'required'
         // ]);
-
+// return "mad o";
         if(Auth::attempt(['email'=>$request['email'],'password'=>$request['password']])){
             return Auth::user();
 

@@ -128,7 +128,7 @@
                             </tbody>
                         </table>
                         <hr>
-                        <button class="button medium btn-update">CHECK OUT</button>
+                        <a href="/checkout"><button class="button medium btn-update">CHECK OUT</button></a>
                     </div>
                 </div>
             </div>

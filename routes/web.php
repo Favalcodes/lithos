@@ -38,7 +38,7 @@ Route::get("/product/{product_id}", [
     "as"=>"product"
     ]);
     
-    Route::post("/user/register", 
+Route::post("/user/register", 
     [
         "uses"=> "App\Http\Controllers\StoreController@userRegister",
         "as"=>"register"
@@ -55,29 +55,46 @@ Route::post("/user/login",
 //carts
 Route::get("/cart",
     [
-        "uses"=> "App\Http\Controllers\cartController@index",
+        "uses"=> "App\Http\Controllers\CartController@index",
         "as"=>"cart"
     ]
 );
 
 Route::post("/add",
     [
-        "uses"=> "App\Http\Controllers\cartController@store",
+        "uses"=> "App\Http\Controllers\CartController@store",
         "as"=>"add"
     ]
 );
 
+Route::get("/checkout",
+[
+    "uses"=> "App\Http\Controllers\CartController@checkout",
+    "as"=>"checkout"
+]
+);
+
 Route::post("/addqty/{cart_id}",
     [
-        "uses"=> "App\Http\Controllers\cartController@addQuantity",
+        "uses"=> "App\Http\Controllers\CartController@addQuantity",
         "as"=>"addqty"
     ]
+);
+
+// transactions
+Route::post("/payment",
+[
+    "uses"=> "App\Http\Controllers\TransactionsController@transactions",
+    "as"=>"make.payment" 
+]
 );
 
 //pages
 Route::get("/account", function(){
     return view("website.frontend.store.account");
 })->middleware('auth');
+
+
 
 Route::get("/contact", function(){
     return view("website.frontend.layouts.contact");
@@ -124,7 +141,7 @@ Route::get("/home", function(){
 
 Route::post("/order",'App\Http\Controllers\StoreController@makePaypalPayment' );
 
-Route::post("/payment","App\Http\Controllers\StoreController@contPaypalPayment");
+// Route::post("/payment","App\Http\Controllers\StoreController@contPaypalPayment");
 
 
 

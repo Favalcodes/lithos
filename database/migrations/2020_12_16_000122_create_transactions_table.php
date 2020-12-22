@@ -19,8 +19,8 @@ class CreateTransactionsTable extends Migration
             $table->integer('user_id');
             $table->integer('amount');
             $table->string('payment_method');
-            $table->string('refrence');
-            $table->integer('status');// 1 is successfull 2 is pending 3 is successfull
+            $table->string('reference');
+            $table->integer('status');// 1 is successfull 2 is pending 3 is failed
             $table->string('trans_id');
             $table->timestamps();
         });

@@ -2,6 +2,15 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use PayPalCheckoutSdk\Core\PayPalHttpClient;
+use PayPalCheckoutSdk\Core\SandboxEnvironment;
+use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
+// use PayPalCheckoutSdk\Core\PayPalHttpClient;
+// use PayPalCheckoutSdk\Core\SandboxEnvironment;
+
+ini_set('error_reporting', E_ALL); // or error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +25,85 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
 
+//store
+Route::get("/products", 
+        [
+            "uses"=> "App\Http\Controllers\StoreController@productsPage",
+            "as"=>"products"
+        ]
+    );
+
+Route::get("/product/{product_id}", [
+    "uses"=>"App\Http\Controllers\StoreController@productPage",
+    "as"=>"product"
+    ]);
+    
+Route::post("/user/register", 
+    [
+        "uses"=> "App\Http\Controllers\StoreController@userRegister",
+        "as"=>"register"
+    ]
+);
+
+Route::post("/user/login", 
+        [
+            "uses"=> "App\Http\Controllers\StoreController@userAuth",
+            "as"=>"login"
+        ]
+    );
+
+//carts
+Route::get("/cart",
+    [
+        "uses"=> "App\Http\Controllers\CartController@index",
+        "as"=>"cart"
+    ]
+);
+
+Route::post("/add",
+    [
+        "uses"=> "App\Http\Controllers\CartController@store",
+        "as"=>"add"
+    ]
+);
+
+Route::get("/checkout",
+[
+    "uses"=> "App\Http\Controllers\CartController@checkout",
+    "as"=>"checkout"
+]
+);
+
+Route::post("/addqty/{cart_id}",
+    [
+        "uses"=> "App\Http\Controllers\CartController@addQuantity",
+        "as"=>"addqty"
+    ]
+);
+
+// transactions
+Route::post("/payment",
+[
+    "uses"=> "App\Http\Controllers\TransactionsController@transactions",
+    "as"=>"make.payment" 
+]
+);
+
+//pages
+Route::get("/account", function(){
+    return view("website.frontend.store.account");
+})->middleware('auth');
+
+
+
+Route::get("/contact", function(){
+    return view("website.frontend.layouts.contact");
+});
+
+Route::get("/about", function(){
+    return view("website.frontend.layouts.about");
+});
+Route::get("/test/products","App\Http\Controllers\StoreController@productsPage" );
 
 Auth::routes();
 
@@ -25,7 +113,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/dashboard', [App\Http\Controllers\BackendController::class, 'index'])->name('backend.index');
+
+//Admin Login
+Route::get('/admin/register', [App\Http\Controllers\AdminController::class, 'register'])->name('admin.register');
+Route::get('/admin/login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin.login');
+Route::post('/admin/register', [App\Http\Controllers\AdminController::class, 'postRegister'])->name('admin.register');
+Route::post('/admin/login', [App\Http\Controllers\AdminController::class, 'postLogin'])->name('admin.login');
+Route::get('/admin/logout', [App\Http\Controllers\AdminController::class, 'logOut'])->name('admin.logout');
+
+
+//dashboard
+
+Route::get('/dashboard', [App\Http\Controllers\BackendController::class, 'index'])->name('backend.index')->middleware('auth:admin');
 
 Route::resource('/dashboard/category', 'App\Http\Controllers\ProductCategoryController');
 Route::resource('/dashboard/product', 'App\Http\Controllers\ProductController');
@@ -34,4 +133,17 @@ Route::resource('/dashboard/contact', 'App\Http\Controllers\ContactController');
 Route::resource('/dashboard/payment', 'App\Http\Controllers\PaymentController');
 Route::resource('/dashboard/contactForm', 'App\Http\Controllers\ContactFormController');
 Route::resource('/dashboard/customerDetail', 'App\Http\Controllers\CustomerDetailController');
+
+//paypal route.
+Route::get("/home", function(){
+    return view("welcome");
+});
+
+Route::post("/order",'App\Http\Controllers\StoreController@makePaypalPayment' );
+
+// Route::post("/payment","App\Http\Controllers\StoreController@contPaypalPayment");
+
+
+
+
 

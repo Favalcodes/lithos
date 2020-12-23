@@ -1,98 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@include('website.frontend.layouts.head')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon">
+    <title>Lithos Collections</title>
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{{URL::to('frontend/assets/css/cart.css')}}">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <script src="https://kit.fontawesome.com/6ebc2d8f5f.js" crossorigin="anonymous"></script>
+    <!--Ionicons-->
+    <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+
+
+</head>
+
 
 <body>
 @include("website.frontend.layouts.header")
 
-    <!-- Cart Modal -->
-    <div class="modal fade modal-sm" id="cartModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h6 class="heading">YOUR CART</h6>
-                    <button class="close" type="button" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="text-center">
-                        <p>Your shopping cart is empty</p>
-                        <a href="./product.html">Start shopping</a>
-                    </div>
-                    <div class="total">
-                        <p class="sub-total">Total:</p>
-                        <p class="amount">0.00</p>
-                    </div>
-                    <div class="modal-buttons">
-                        <div class="cart-shopping">
-                            <a href="./cart.html">VIEW CART</a>
-                        </div>
-                        <div class="checkout-shopping">
-                            <a href="./checkout.html">CHECKOUT</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Cart Modal -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="login-modal" data-toggle="modal">
-        <div class="modal-dialog" role="document">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="text-center">
-                        <img src="./assets/images/user2.svg" />
-                        <p>Sign in to make the most out of your shopping experience.</p>
-                        <div id="div-forms">
-                            <form id="login-form" enctype="multipart/form-data" method="POST">
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="username" placeholder="Username">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="password" placeholder="Password">
-                                </div>
-                                <div class="row">
-                                    <div class="col-auto text-muted">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                            <label class="form-check-label" for="inlineRadio1">Remember me</label>
-                                        </div>
-                                        <button id="login_lost_btn" type="button" class="btn btn-link"><a href="./invalid-password.html">Lost your password?</a></button>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary"><a href="./account.html">LOGIN</a></button>
-                                <div class="create-account">
-                                    <button id="login_register_btn" type="button" class="btn btn-link">Don't have an account? create one now <i class="fas fa-arrow-right"></i></button>
-                                </div>
-                            </form>
-                            <form id="sign-form" enctype="multipart/form-data" method="POST" style="display: none;">
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="username" placeholder="Username">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="email" placeholder="Email Address">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="password" placeholder="Password">
-                                </div>
-                                <button type="submit" class="btn btn-primary"><a href="./account.html">REGISTER</a></button>
-                                <div class="back-login">
-                                    <button id="register_login_btn" type="button" class="btn btn-link">Back to login<i class="fas fa-arrow-right"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <section class="cart-home">
         <div class="jumbotron jumbotron-fluid">
@@ -117,45 +52,44 @@
                                     <th class="product-subtotal">Total</th>
                                     <th class="product-remove">&nbsp;</th>
                                 </tr>
-                            </thead>
-
+                            @php
+                                $totals=[];
+                            @endphp
+                            @foreach($products as $product)
+                            @foreach(Auth::user()->cart as $cart)
+                            @if($cart->product_id == $product->id)
+                        <form method="post" action="{{route('addqty', ['cart_id'=> $cart->id]) }}">
+                            @csrf
                             <tbody>
                                 <tr>
                                     <td class="product-thumbnail"><img src="images/products/1.png" alt=""></td>
-
-                                    <td class="product-name"><a href="./product-info.html">Violette</a></td>
-                                    <td>&#8358;3500.00</td>
-                                    <td><input class="qty" type="number" value="1"></td>
-                                    <td>&#8358;3500.00</td>
+                                    <td class="product-name"><a href="">{{$product->product_name}}</a></td>
+                                    <td>&#8358;{{$product->price}}.00</td>
+                                    
+                                    <td><input class="qty" type="number" value="{{$cart->quantity}}" name="myNumber"></td>
+                                    @php
+                                        $total=$cart->quantity*$product->price;
+                                        $totals[]=$total;
+                                        
+                                    @endphp
+                                    <td>&#8358;{{$total}}.00</td>
+                                     
                                     <td class="product-remove" data-role="removeBtn"><a href="#"><i class="fa fa-close"></i></a></td>
+                                    <td class="product-remove" data-role="removeBtn"><button class="button medium" >UPDATE CART</button></td>
+                                    
                                 </tr>
-                            </tbody>
-                            <tbody>
                                 <tr>
-                                    <td class="product-thumbnail"><img src="images/products/1.png" alt=""></td>
-
-                                    <td class="product-name"><a href="./product-info.html">Noir</a></td>
-                                    <td>&#8358;3500.00</td>
-                                    <td><input class="qty" type="number" value="1"></td>
-                                    <td>&#8358;3500.00</td>
-                                    <td class="product-remove"><a href="#" data-role="removeBtn"><i class="fa fa-close"></i></a></td>
+                                
                                 </tr>
                             </tbody>
-                            <tbody>
-                                <tr>
-                                    <td class="product-thumbnail"><img src="images/products/1.png" alt=""></td>
-
-                                    <td class="product-name"><a href="./product-info.html">Nuit</a></td>
-                                    <td>&#8358;3500.00</td>
-                                    <td><input class="qty" type="number" value="1"></td>
-                                    <td>&#8358;3500.00</td>
-                                    <td class="product-remove" data-role="removeBtn"><a href="#"><i class="fa fa-close"></i></a></td>
-                                </tr>
-                            </tbody>
-
+                           
+                        </form>
+                            @endif
+                            @endforeach
+                            @endforeach
                         </table>
                         <hr>
-                        <button class="button medium">UPDATE CART</button>
+                        
                         <button class="button btn-primary medium checkout-button">CONTINUE TO SHOPPING</button>
                     </div>
                 </div>
@@ -168,7 +102,7 @@
                             <tbody>
                                 <tr>
                                     <td>Subtotal</td>
-                                    <td><span class="price my-1">&#8358;10,500.00</span></td>
+                                    <td><span class="price my-1">&#8358;{{array_sum($totals)}}.00</span></td>
                                 </tr>
                                 <tr>
                                     <td>Shipping</td>
@@ -189,12 +123,12 @@
                                 </tr>
                                 <tr class="order-total">
                                     <td>Toal</td>
-                                    <td><span class="price my-1">&#8358;10,5000.00</span></td>
+                                    <td><span class="price my-1">&#8358;{{array_sum($totals)}}.00</span></td>
                                 </tr>
                             </tbody>
                         </table>
                         <hr>
-                        <button class="button medium btn-update">UPDATE CART</button>
+                        <a href="/checkout"><button class="button medium btn-update">CHECK OUT</button></a>
                     </div>
                 </div>
             </div>
